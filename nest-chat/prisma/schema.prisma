@@ -1,0 +1,98 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/prisma"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Contact {
+    ownerId                      Int
+    contactId                    Int
+    contactName                  String?        @db.VarChar(255)
+    status                       ContactStatus?
+    createdAt                    DateTime?      @default(now()) @db.Timestamp(0)
+    updatedAt                    DateTime?      @default(now()) @db.Timestamp(0)
+    owner   User           @relation("Contact_ownerIdToUser", fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_1")
+    contact User           @relation("Contact_contactIdToUser", fields: [contactId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_2")
+
+    @@id([ownerId, contactId])
+    @@index([contactId], map: "contactId")
+}
+
+model Conversation {
+    id           Int                       @id @default(autoincrement())
+    name         String                    @db.VarChar(255)
+    type         ConversationType
+    createdAt    DateTime?                 @default(now()) @db.Timestamp(0)
+    updatedAt    DateTime?                 @default(now()) @db.Timestamp(0)
+    participants ConversationParticipant[]
+    messages     Message[]
+}
+
+model ConversationParticipant {
+    id             Int           @id @default(autoincrement())
+    userId         Int?
+    conversationId Int?
+    joinedAt       DateTime?     @default(now()) @db.Timestamp(0)
+    leavedAt       DateTime?     @db.Timestamp(0)
+    conversation   Conversation? @relation(fields: [conversationId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ConversationParticipant_ibfk_1")
+    user           User?         @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "ConversationParticipant_ibfk_2")
+
+    @@index([conversationId], map: "conversationId")
+    @@index([userId], map: "userId")
+}
+
+model Message {
+    id             Int            @id @default(autoincrement())
+    text           String?        @db.VarChar(255)
+    senderId       Int
+    conversationId Int
+    timestamp      DateTime?      @default(now()) @db.Timestamp(0)
+    status         MessageStatus?
+    conversation   Conversation   @relation(fields: [conversationId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Message_ibfk_1")
+    user           User           @relation(fields: [senderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Message_ibfk_2")
+
+    @@index([conversationId], map: "conversationId")
+    @@index([senderId], map: "senderId")
+}
+
+model User {
+    id                               Int                       @id @default(autoincrement())
+    name                             String?                   @db.VarChar(255)
+    password                         String                    @db.VarChar(255)
+    email                            String                    @db.Char(255)
+    avatar                           String?                   @db.Char(255)
+    status                           UserStatus?
+    createdAt                        DateTime?                 @default(now()) @db.Timestamp(0)
+    updatedAt                        DateTime?                 @default(now()) @db.Timestamp(0)
+    contact_contact_ownerIdToUsers   Contact[]                 @relation("Contact_ownerIdToUser")
+    contact_contact_contactIdToUsers Contact[]                 @relation("Contact_contactIdToUser")
+    conversations                    ConversationParticipant[]
+    messages                         Message[]
+}
+
+enum ConversationType {
+    GROUP
+    ONE_TO_ONE
+}
+
+enum ContactStatus {
+    PENDING
+    ACCEPTED
+    BLOCKED
+}
+
+enum MessageStatus {
+    SENT
+    DELIVERED
+    READ
+}
+
+enum UserStatus {
+    ONLINE
+    OFFLINE
+    AWAY
+}

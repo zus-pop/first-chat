@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import Pusher from 'pusher';
 
 @Injectable()
 export class PusherService extends Pusher {
-  constructor() {
+  constructor(config: ConfigService) {
     super({
-      appId: '1962560',
-      key: 'ff846b1ce568d68c39da',
-      secret: '4eec5588ad648c628c67',
-      cluster: 'ap1',
+      appId: config.get<string>('PUSHER_APP_ID') as string,
+      key: config.get<string>('PUSHER_APP_KEY') as string,
+      secret: config.get<string>('PUSHER_APP_SECRET') as string,
+      cluster: config.get<string>('PUSHER_APP_CLUSTER') as string,
       useTLS: true,
     });
   }

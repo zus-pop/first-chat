@@ -7,6 +7,7 @@ import {
   RegisterDtoRequest,
   RegisterDtoResponse,
 } from './dto';
+import { User } from '../../../generated/prisma';
 
 @Injectable()
 export class AuthService {
@@ -41,6 +42,20 @@ export class AuthService {
     return {
       access_token: token,
     };
+  }
+
+  async whoAmI(user: {
+    id: number;
+    name: string;
+    email: string;
+    status: User['status'];
+  }) {
+    const { id } = user;
+    const userInfo = await this.userService.findById(id);
+    if (!userInfo) {
+      throw new BadRequestException('User not found');
+    }
+    return userInfo;
   }
 
   async register(

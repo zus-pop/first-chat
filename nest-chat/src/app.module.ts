@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { ContactModule } from './modules/contact/contact.module';
 import { ConversationModule } from './modules/conversation/conversation.module';
+import { WebsocketModule } from './modules/websocket/websocket.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConversationModule } from './modules/conversation/conversation.module';
     AuthModule,
     ContactModule,
     ConversationModule,
+    WebsocketModule,
   ],
   controllers: [],
   providers: [],

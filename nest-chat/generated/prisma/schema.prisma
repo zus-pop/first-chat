@@ -68,7 +68,7 @@ model User {
   status                           UserStatus?
   createdAt                        DateTime?                 @default(now()) @db.Timestamp(0)
   updatedAt                        DateTime?                 @default(now()) @db.Timestamp(0)
-  contact_contact_ownerIdToUsers   Contact[]                 @relation("Contact_ownerIdToUser")
+  contacts                         Contact[]                 @relation("Contact_ownerIdToUser")
   contact_contact_contactIdToUsers Contact[]                 @relation("Contact_contactIdToUser")
   conversations                    ConversationParticipant[]
   messages                         Message[]

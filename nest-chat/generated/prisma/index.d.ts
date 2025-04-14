@@ -1289,14 +1289,14 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    contact_contact_ownerIdToUsers: number
+    contacts: number
     contact_contact_contactIdToUsers: number
     conversations: number
     messages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact_contact_ownerIdToUsers?: boolean | UserCountOutputTypeCountContact_contact_ownerIdToUsersArgs
+    contacts?: boolean | UserCountOutputTypeCountContactsArgs
     contact_contact_contactIdToUsers?: boolean | UserCountOutputTypeCountContact_contact_contactIdToUsersArgs
     conversations?: boolean | UserCountOutputTypeCountConversationsArgs
     messages?: boolean | UserCountOutputTypeCountMessagesArgs
@@ -1316,7 +1316,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountContact_contact_ownerIdToUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountContactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ContactWhereInput
   }
 
@@ -5566,7 +5566,7 @@ export namespace Prisma {
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    contact_contact_ownerIdToUsers?: boolean | User$contact_contact_ownerIdToUsersArgs<ExtArgs>
+    contacts?: boolean | User$contactsArgs<ExtArgs>
     contact_contact_contactIdToUsers?: boolean | User$contact_contact_contactIdToUsersArgs<ExtArgs>
     conversations?: boolean | User$conversationsArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
@@ -5588,7 +5588,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "password" | "email" | "avatar" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact_contact_ownerIdToUsers?: boolean | User$contact_contact_ownerIdToUsersArgs<ExtArgs>
+    contacts?: boolean | User$contactsArgs<ExtArgs>
     contact_contact_contactIdToUsers?: boolean | User$contact_contact_contactIdToUsersArgs<ExtArgs>
     conversations?: boolean | User$conversationsArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
@@ -5598,7 +5598,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      contact_contact_ownerIdToUsers: Prisma.$ContactPayload<ExtArgs>[]
+      contacts: Prisma.$ContactPayload<ExtArgs>[]
       contact_contact_contactIdToUsers: Prisma.$ContactPayload<ExtArgs>[]
       conversations: Prisma.$ConversationParticipantPayload<ExtArgs>[]
       messages: Prisma.$MessagePayload<ExtArgs>[]
@@ -5952,7 +5952,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    contact_contact_ownerIdToUsers<T extends User$contact_contact_ownerIdToUsersArgs<ExtArgs> = {}>(args?: Subset<T, User$contact_contact_ownerIdToUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    contacts<T extends User$contactsArgs<ExtArgs> = {}>(args?: Subset<T, User$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     contact_contact_contactIdToUsers<T extends User$contact_contact_contactIdToUsersArgs<ExtArgs> = {}>(args?: Subset<T, User$contact_contact_contactIdToUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     conversations<T extends User$conversationsArgs<ExtArgs> = {}>(args?: Subset<T, User$conversationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ConversationParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6336,9 +6336,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.contact_contact_ownerIdToUsers
+   * User.contacts
    */
-  export type User$contact_contact_ownerIdToUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$contactsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Contact
      */
@@ -6901,7 +6901,7 @@ export namespace Prisma {
     status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeNullableFilter<"User"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactListRelationFilter
+    contacts?: ContactListRelationFilter
     contact_contact_contactIdToUsers?: ContactListRelationFilter
     conversations?: ConversationParticipantListRelationFilter
     messages?: MessageListRelationFilter
@@ -6916,7 +6916,7 @@ export namespace Prisma {
     status?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
-    contact_contact_ownerIdToUsers?: ContactOrderByRelationAggregateInput
+    contacts?: ContactOrderByRelationAggregateInput
     contact_contact_contactIdToUsers?: ContactOrderByRelationAggregateInput
     conversations?: ConversationParticipantOrderByRelationAggregateInput
     messages?: MessageOrderByRelationAggregateInput
@@ -6935,7 +6935,7 @@ export namespace Prisma {
     status?: EnumUserStatusNullableFilter<"User"> | $Enums.UserStatus | null
     createdAt?: DateTimeNullableFilter<"User"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"User"> | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactListRelationFilter
+    contacts?: ContactListRelationFilter
     contact_contact_contactIdToUsers?: ContactListRelationFilter
     conversations?: ConversationParticipantListRelationFilter
     messages?: MessageListRelationFilter
@@ -6976,7 +6976,7 @@ export namespace Prisma {
     status?: $Enums.ContactStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    owner: UserCreateNestedOneWithoutContact_contact_ownerIdToUsersInput
+    owner: UserCreateNestedOneWithoutContactsInput
     contact: UserCreateNestedOneWithoutContact_contact_contactIdToUsersInput
   }
 
@@ -6994,7 +6994,7 @@ export namespace Prisma {
     status?: NullableEnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    owner?: UserUpdateOneRequiredWithoutContact_contact_ownerIdToUsersNestedInput
+    owner?: UserUpdateOneRequiredWithoutContactsNestedInput
     contact?: UserUpdateOneRequiredWithoutContact_contact_contactIdToUsersNestedInput
   }
 
@@ -7210,7 +7210,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactCreateNestedManyWithoutOwnerInput
+    contacts?: ContactCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactCreateNestedManyWithoutContactInput
     conversations?: ConversationParticipantCreateNestedManyWithoutUserInput
     messages?: MessageCreateNestedManyWithoutUserInput
@@ -7225,7 +7225,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedCreateNestedManyWithoutOwnerInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactUncheckedCreateNestedManyWithoutContactInput
     conversations?: ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
@@ -7239,7 +7239,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUpdateManyWithoutContactNestedInput
     conversations?: ConversationParticipantUpdateManyWithoutUserNestedInput
     messages?: MessageUpdateManyWithoutUserNestedInput
@@ -7254,7 +7254,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUncheckedUpdateManyWithoutContactNestedInput
     conversations?: ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
@@ -7774,9 +7774,9 @@ export namespace Prisma {
     _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
   }
 
-  export type UserCreateNestedOneWithoutContact_contact_ownerIdToUsersInput = {
-    create?: XOR<UserCreateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedCreateWithoutContact_contact_ownerIdToUsersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutContact_contact_ownerIdToUsersInput
+  export type UserCreateNestedOneWithoutContactsInput = {
+    create?: XOR<UserCreateWithoutContactsInput, UserUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutContactsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -7798,12 +7798,12 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type UserUpdateOneRequiredWithoutContact_contact_ownerIdToUsersNestedInput = {
-    create?: XOR<UserCreateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedCreateWithoutContact_contact_ownerIdToUsersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutContact_contact_ownerIdToUsersInput
-    upsert?: UserUpsertWithoutContact_contact_ownerIdToUsersInput
+  export type UserUpdateOneRequiredWithoutContactsNestedInput = {
+    create?: XOR<UserCreateWithoutContactsInput, UserUncheckedCreateWithoutContactsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutContactsInput
+    upsert?: UserUpsertWithoutContactsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutContact_contact_ownerIdToUsersInput, UserUpdateWithoutContact_contact_ownerIdToUsersInput>, UserUncheckedUpdateWithoutContact_contact_ownerIdToUsersInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutContactsInput, UserUpdateWithoutContactsInput>, UserUncheckedUpdateWithoutContactsInput>
   }
 
   export type UserUpdateOneRequiredWithoutContact_contact_contactIdToUsersNestedInput = {
@@ -8393,7 +8393,7 @@ export namespace Prisma {
     _max?: NestedEnumUserStatusNullableFilter<$PrismaModel>
   }
 
-  export type UserCreateWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserCreateWithoutContactsInput = {
     name?: string | null
     password: string
     email: string
@@ -8406,7 +8406,7 @@ export namespace Prisma {
     messages?: MessageCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserUncheckedCreateWithoutContactsInput = {
     id?: number
     name?: string | null
     password: string
@@ -8420,9 +8420,9 @@ export namespace Prisma {
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserCreateOrConnectWithoutContactsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedCreateWithoutContact_contact_ownerIdToUsersInput>
+    create: XOR<UserCreateWithoutContactsInput, UserUncheckedCreateWithoutContactsInput>
   }
 
   export type UserCreateWithoutContact_contact_contactIdToUsersInput = {
@@ -8433,7 +8433,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactCreateNestedManyWithoutOwnerInput
+    contacts?: ContactCreateNestedManyWithoutOwnerInput
     conversations?: ConversationParticipantCreateNestedManyWithoutUserInput
     messages?: MessageCreateNestedManyWithoutUserInput
   }
@@ -8447,7 +8447,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedCreateNestedManyWithoutOwnerInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutOwnerInput
     conversations?: ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8457,18 +8457,18 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutContact_contact_contactIdToUsersInput, UserUncheckedCreateWithoutContact_contact_contactIdToUsersInput>
   }
 
-  export type UserUpsertWithoutContact_contact_ownerIdToUsersInput = {
-    update: XOR<UserUpdateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedUpdateWithoutContact_contact_ownerIdToUsersInput>
-    create: XOR<UserCreateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedCreateWithoutContact_contact_ownerIdToUsersInput>
+  export type UserUpsertWithoutContactsInput = {
+    update: XOR<UserUpdateWithoutContactsInput, UserUncheckedUpdateWithoutContactsInput>
+    create: XOR<UserCreateWithoutContactsInput, UserUncheckedCreateWithoutContactsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserUpdateToOneWithWhereWithoutContactsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutContact_contact_ownerIdToUsersInput, UserUncheckedUpdateWithoutContact_contact_ownerIdToUsersInput>
+    data: XOR<UserUpdateWithoutContactsInput, UserUncheckedUpdateWithoutContactsInput>
   }
 
-  export type UserUpdateWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserUpdateWithoutContactsInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -8481,7 +8481,7 @@ export namespace Prisma {
     messages?: MessageUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutContact_contact_ownerIdToUsersInput = {
+  export type UserUncheckedUpdateWithoutContactsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
@@ -8514,7 +8514,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUpdateManyWithoutOwnerNestedInput
     conversations?: ConversationParticipantUpdateManyWithoutUserNestedInput
     messages?: MessageUpdateManyWithoutUserNestedInput
   }
@@ -8528,7 +8528,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
     conversations?: ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8666,7 +8666,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactCreateNestedManyWithoutOwnerInput
+    contacts?: ContactCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactCreateNestedManyWithoutContactInput
     messages?: MessageCreateNestedManyWithoutUserInput
   }
@@ -8680,7 +8680,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedCreateNestedManyWithoutOwnerInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactUncheckedCreateNestedManyWithoutContactInput
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8737,7 +8737,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUpdateManyWithoutContactNestedInput
     messages?: MessageUpdateManyWithoutUserNestedInput
   }
@@ -8751,7 +8751,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUncheckedUpdateManyWithoutContactNestedInput
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8786,7 +8786,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactCreateNestedManyWithoutOwnerInput
+    contacts?: ContactCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactCreateNestedManyWithoutContactInput
     conversations?: ConversationParticipantCreateNestedManyWithoutUserInput
   }
@@ -8800,7 +8800,7 @@ export namespace Prisma {
     status?: $Enums.UserStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedCreateNestedManyWithoutOwnerInput
+    contacts?: ContactUncheckedCreateNestedManyWithoutOwnerInput
     contact_contact_contactIdToUsers?: ContactUncheckedCreateNestedManyWithoutContactInput
     conversations?: ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   }
@@ -8857,7 +8857,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUpdateManyWithoutContactNestedInput
     conversations?: ConversationParticipantUpdateManyWithoutUserNestedInput
   }
@@ -8871,7 +8871,7 @@ export namespace Prisma {
     status?: NullableEnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    contact_contact_ownerIdToUsers?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
+    contacts?: ContactUncheckedUpdateManyWithoutOwnerNestedInput
     contact_contact_contactIdToUsers?: ContactUncheckedUpdateManyWithoutContactNestedInput
     conversations?: ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -8907,7 +8907,7 @@ export namespace Prisma {
     status?: $Enums.ContactStatus | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
-    owner: UserCreateNestedOneWithoutContact_contact_ownerIdToUsersInput
+    owner: UserCreateNestedOneWithoutContactsInput
   }
 
   export type ContactUncheckedCreateWithoutContactInput = {
@@ -9170,7 +9170,7 @@ export namespace Prisma {
     status?: NullableEnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    owner?: UserUpdateOneRequiredWithoutContact_contact_ownerIdToUsersNestedInput
+    owner?: UserUpdateOneRequiredWithoutContactsNestedInput
   }
 
   export type ContactUncheckedUpdateWithoutContactInput = {

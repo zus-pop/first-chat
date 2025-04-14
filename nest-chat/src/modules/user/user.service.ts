@@ -17,7 +17,7 @@ export class UserService {
     });
   }
 
-  async findOne(id: number) {
+  async findById(id: number) {
     this.logger.log('Fetching a single user');
     const user = await this.prismaClient.user.findFirst({
       where: {

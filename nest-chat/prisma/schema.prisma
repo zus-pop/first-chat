@@ -9,14 +9,14 @@ datasource db {
 }
 
 model Contact {
-    ownerId                      Int
-    contactId                    Int
-    contactName                  String?        @db.VarChar(255)
-    status                       ContactStatus?
-    createdAt                    DateTime?      @default(now()) @db.Timestamp(0)
-    updatedAt                    DateTime?      @default(now()) @db.Timestamp(0)
-    owner   User           @relation("Contact_ownerIdToUser", fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_1")
-    contact User           @relation("Contact_contactIdToUser", fields: [contactId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_2")
+    ownerId     Int
+    contactId   Int
+    contactName String?        @db.VarChar(255)
+    status      ContactStatus?
+    createdAt   DateTime?      @default(now()) @db.Timestamp(0)
+    updatedAt   DateTime?      @default(now()) @db.Timestamp(0)
+    owner       User           @relation("Contact_ownerIdToUser", fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_1")
+    contact     User           @relation("Contact_contactIdToUser", fields: [contactId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Contact_ibfk_2")
 
     @@id([ownerId, contactId])
     @@index([contactId], map: "contactId")
@@ -68,7 +68,7 @@ model User {
     status                           UserStatus?
     createdAt                        DateTime?                 @default(now()) @db.Timestamp(0)
     updatedAt                        DateTime?                 @default(now()) @db.Timestamp(0)
-    contact_contact_ownerIdToUsers   Contact[]                 @relation("Contact_ownerIdToUser")
+    contacts                         Contact[]                 @relation("Contact_ownerIdToUser")
     contact_contact_contactIdToUsers Contact[]                 @relation("Contact_contactIdToUser")
     conversations                    ConversationParticipant[]
     messages                         Message[]

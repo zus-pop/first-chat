@@ -15,9 +15,6 @@ export class ContactService {
       include: {
         contact: true,
       },
-      omit: {
-        contactId: true,
-      },
     });
   }
 }

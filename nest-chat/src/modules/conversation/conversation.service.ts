@@ -14,9 +14,21 @@ export class ConversationService {
           userId: userId,
         },
         select: {
-          conversation: true,
+          conversation: {
+            include: {
+              messages: {
+                include: {
+                  user: true,
+                },
+              },
+            },
+          },
         },
       })
-      .then((cv) => cv.map((c) => c.conversation));
+      .then((cv) =>
+        cv.map((c) => ({
+          ...c.conversation,
+        })),
+      );
   }
 }

@@ -1,6 +1,5 @@
-import { useChatStore } from "../stores/ChatStore";
-import { useUserStore } from "../stores/UserStore";
-import Message from "./ui/message";
+import UserMessage from "@/components/ui/user-message";
+import { useChatStore, useUserStore } from "../stores";
 
 const ChatView = () => {
   const currentConversation = useChatStore(
@@ -15,15 +14,15 @@ const ChatView = () => {
             new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
         )
         .map((message) => (
-          <Message
+          <UserMessage
             key={message.id}
-            message={message.text}
-            position={message.senderId === currentUser?.id ? "right" : "left"}
+            currentUserId={currentUser?.id as number}
+            message={message}
             className={`${
               message.senderId === currentUser?.id
                 ? "bg-black text-white"
                 : "bg-gray-300"
-            } px-4 py-2 -mt-4 mb-2 rounded-xl`}
+            } px-4 py-2 rounded-xl`}
           />
         ))}
     </div>

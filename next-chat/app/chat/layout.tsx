@@ -1,8 +1,8 @@
 "use client";
 import ChatSidebar from "@/components/chat-sidebar";
-import AuthGuard from "@components/auth-guard";
 import { SidebarProvider, SidebarTrigger } from "@components/ui/sidebar";
-import { useChatStore } from "../../stores";
+import AuthGuard from "../../components/auth-guard";
+import { useChatStore } from "@/stores";
 
 export default function ChatLayout({
   children,
@@ -10,6 +10,7 @@ export default function ChatLayout({
   const currentConversation = useChatStore(
     (state) => state.currentConversation
   );
+
   return (
     <AuthGuard>
       <SidebarProvider>
@@ -19,8 +20,17 @@ export default function ChatLayout({
             <SidebarTrigger />
             <h1 className="text-xl font-bold">{currentConversation?.name}</h1>
           </div>
-          <hr className="border-gray-950 border-2 rounded-2xl" />
-          {children}
+
+          {currentConversation !== null ? (
+            <>
+              <hr className="border-gray-950 border-2 rounded-2xl" />
+              {children}
+            </>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <h1 className="text-2xl font-bold">Select a conversation</h1>
+            </div>
+          )}
         </main>
       </SidebarProvider>
     </AuthGuard>

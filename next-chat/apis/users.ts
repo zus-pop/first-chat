@@ -3,7 +3,7 @@ import myAxios from "../utils/myAxios";
 
 export const getAllUsers = async () => {
   try {
-    const res = await myAxios.get(`/users`);
+    const res = await myAxios.get(`api/users`);
     if (res.status !== 200) {
       throw new Error("Failed to fetch data");
     }
@@ -16,7 +16,7 @@ export const getAllUsers = async () => {
 
 export const getAllContactByMe = async () => {
   try {
-    const res = await myAxios.get<Contact[]>(`/users/me/contacts`);
+    const res = await myAxios.get<Contact[]>(`api/users/me/contacts`);
     if (res.status !== 200) {
       throw new Error("Failed to fetch data");
     }
@@ -29,7 +29,7 @@ export const getAllContactByMe = async () => {
 
 export const getAllConversationsByMe = async () => {
   try {
-    const res = await myAxios.get<Conversation[]>(`/users/me/conversations`);
+    const res = await myAxios.get<Conversation[]>(`api/users/me/conversations`);
     if (res.status !== 200) {
       throw new Error("Failed to fetch data");
     }

@@ -27,9 +27,9 @@ CREATE TABLE `User` (
 
 CREATE TABLE `ConversationParticipant` (
   `id` INT AUTO_INCREMENT NOT NULL,
-  `userId` INT,
-  `conversationId` INT,
-  `joinedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `userId` INT NOT NULL,
+  `conversationId` INT NOT NULL,
+  `joinedAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   `leavedAt` TIMESTAMP,
   FOREIGN KEY (`conversationId`) REFERENCES `Conversation`(`id`),
   FOREIGN KEY (`userId`) REFERENCES `User`(`id`),
@@ -38,11 +38,11 @@ CREATE TABLE `ConversationParticipant` (
 
 CREATE TABLE `Message` (
   `id` INT AUTO_INCREMENT NOT NULL,
-  `text` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `text` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `senderId` INT NOT NULL,
   `conversationId` INT NOT NULL,
-  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `status` ENUM('SENT', 'DELIVERED', 'READ'),
+  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  `status` ENUM('SENT', 'DELIVERED', 'READ') NOT NULL,
   FOREIGN KEY (`conversationId`) REFERENCES `Conversation`(`id`),
   FOREIGN KEY (`senderId`) REFERENCES `User`(`id`),
   PRIMARY KEY (`id`)

@@ -8,7 +8,7 @@ export interface LoginData {
 
 export const login = async (loginData: LoginData) => {
   try {
-    const res = await myAxios.post<JwtResponse>(`/auth/login`, loginData);
+    const res = await myAxios.post<JwtResponse>(`api/auth/login`, loginData);
     if (res.status !== 200) {
       throw new Error(res.data as any);
     }
@@ -20,13 +20,13 @@ export const login = async (loginData: LoginData) => {
 
 export const whoAmI = async () => {
   try {
-    const res = await myAxios.get(`/auth/me`);
+    const res = await myAxios.get(`api/auth/me`);
     if (res.status !== 200) {
       throw new Error("Failed to fetch data");
     }
     return res.data as User;
   } catch (error) {
-    console.error("Error fetching user:", error);
+    // console.error("Error fetching user:", error);
     throw new Error("Failed to fetch user. Please try again.");
   }
 };

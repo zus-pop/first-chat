@@ -23,11 +23,13 @@ export interface User {
 }
 
 export interface Message {
-  id: number;
+  id?: number;
   text: string;
   senderId: number;
-  timestamp: Date;
+  timestamp?: Date;
   user?: User; // Optional property for user
+  conversationId: number; // ID of the conversation this message belongs to
+  conversation?: Conversation; // Optional property for conversation
 }
 
 export interface Conversation {

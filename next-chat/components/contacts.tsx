@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllContactByMe } from "../apis";
+import { useUserStore } from "../stores";
 
 const Contacts = () => {
+  const user = useUserStore((state) => state.currentUser);
+  const accessToken = useUserStore((state) => state.accessToken);
   const { data: contacts, isLoading } = useQuery({
     queryKey: ["contacts"],
     queryFn: getAllContactByMe,
     retry: false,
+    enabled: !!user && !!accessToken,
   });
 
   if (isLoading) {

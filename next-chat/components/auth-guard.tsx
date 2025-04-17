@@ -1,31 +1,41 @@
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import useAuth from "../hooks/use-auth";
+import { useChatStore, useUserStore } from "../stores";
 import { useWhoAmI } from "../hooks/use-who-am-I";
-import { useUserStore } from "../stores";
 
 const AuthGuard = ({ children }: { children: Readonly<React.ReactNode> }) => {
   const router = useRouter();
-  const { data, isSuccess, isError, isLoading } = useWhoAmI();
+  const { isAuthenticated, hydrated, accessToken } = useAuth();
+  const setCurrentUser = useUserStore((state) => state.setCurrentUser);
+  const clearCurrentUser = useUserStore((state) => state.clearCurrentUser);
+  const clearCurrentConversation = useChatStore(
+    (state) => state.clearCurrentConversation
+  );
+  const { data: user, isLoading, isSuccess, isError } = useWhoAmI();
+
   useEffect(() => {
-    if (isError) {
-      useUserStore.getState().clearCurrentUser();
+    if (!hydrated) return;
+
+    if (!isAuthenticated) {
+      clearCurrentUser();
+      clearCurrentConversation();
       router.replace("/auth");
     }
+  }, [hydrated, isAuthenticated, router, isError]);
 
-    if (isSuccess) {
-      useUserStore.setState({ currentUser: data });
-    }
-  }, [isLoading, isSuccess, isError, data]);
+  if (isAuthenticated && isSuccess) {
+    setCurrentUser(user);
+  }
 
-  if (isLoading) {
+  if (!hydrated || isLoading || !isAuthenticated) {
     return (
       <div className="flex h-screen w-screen items-center justify-center">
         <h1 className="text-2xl font-bold">Loading...</h1>
       </div>
     );
   }
-
-  return <>{children}</>;
+  return <div>{children}</div>;
 };
 
 export default AuthGuard;
